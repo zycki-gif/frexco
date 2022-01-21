@@ -1,3 +1,5 @@
+FROM ubuntu:14.04.3
+RUN apt-get update && apt-get install -y mysql-server
 
 FROM python:3.8.3-alpine
 

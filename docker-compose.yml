@@ -3,17 +3,21 @@ version: '3.7'
 services:
   db:
     image: mysql:5.7
+    container_name: mysql
     ports:
-      - "3007:3306"
+      - '3307:3306'
     environment:
       MYSQL_DATABASE: 'api'
-      MYSQL_USER: 'root'
+      MYSQL_HOST: 'host.docker.internal'
+      MYSQL_USER: 'admin'
       MYSQL_PASSWORD: 'apassword'
       MYSQL_ROOT_PASSWORD: 'apassword'
+      
+     
     
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 
     volumes:
       - .:/frexcodesafio
     ports:

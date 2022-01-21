@@ -80,10 +80,10 @@ WSGI_APPLICATION = 'frexcodesafio.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'api',
-        'USER': 'root',
-        'PASSWORD': 'apassword',
-        'HOST': 'db',
+        'NAME': os.environ.get('MYSQL_DATABASE'),
+        'USER': os.environ.get('MYSQL_USER','admin'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD','apassword'),
+        'HOST': os.environ.get('MYSQL_HOST'),
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
