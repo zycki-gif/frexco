@@ -1,4 +1,4 @@
-version: '3.7'
+version: '2.2'
 
 services:
   db:
@@ -7,10 +7,13 @@ services:
       - "3007:3306"
     environment:
       MYSQL_DATABASE: 'api'
-      MYSQL_USER: 'root'
+      MYSQL_USER: 'admin'
       MYSQL_PASSWORD: 'apassword'
       MYSQL_ROOT_PASSWORD: 'apassword'
-    
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -21,6 +24,7 @@ services:
     env_file:
       - ./.env.dev
     depends_on:
-      - db
+      db: 
+        condition: service_healthy
 
     
