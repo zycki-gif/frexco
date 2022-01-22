@@ -24,8 +24,7 @@ Docker:
  <p>
  <code> docker-compose build </code>
   </p>
-   <p>
- <code> docker-compose up -d </code> </p>
+   
    <p>
  <code> docker-compose run web python manage.py migrate </code>  </p>
       <p>
